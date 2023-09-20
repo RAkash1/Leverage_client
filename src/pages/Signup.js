@@ -26,7 +26,6 @@ export default function Signup() {
       alert("user already exist");
       return;
     }else{
-
     let setuser = JSON.stringify([...allusers,data]);
     localStorage.setItem("users", setuser);
     Navigate("/login");}

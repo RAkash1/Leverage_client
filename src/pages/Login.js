@@ -33,6 +33,7 @@ export default function Login() {
     else{
       localStorage.setItem("logeduser", JSON.stringify(user));
       console.log("user exist");
+      Navigate("/");
     }
     console.log(data);
   };
