@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Nav from "../comp/Nav";
 import Kahbab from "../comp/kahbab";
-import Add from "../comp/add";
 import Edit from "../comp/edit";
-import Done from "../icons8-check-30.png";
-import Circle from "../comp/circle";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import Done from "../assets/check.png";
+import circle from "../assets/circle.png";
+import add from "../assets/add.png";
+import "./dashboard.css";
 export default function Dashboard() {
   let Navigate = useNavigate();
   useEffect(() => {
@@ -18,94 +18,39 @@ export default function Dashboard() {
   return (
     <div>
       <Nav />
-      <div
-        className="list_div"
-        style={{ border: "1px solid #1C437E", width: "300px" }}
-      >
-        <div
-          className="list_head"
-          style={{
-            color: "#1C437E",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "10px",
-          }}
-        >
+      <div className="dashboard">
+      <div className="list_div">
+        <div className="list_head">
           <h2>My Tasks</h2>
-          <span>
-            <Kahbab></Kahbab>
-          </span>
+          <Kahbab />
         </div>
         <div className="list_body" style={{ padding: "10px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <div
-              className="add"
-              style={{
-                height: "30px",
-                width: "30px",
-                borderRadius: "50%",
-                backgroundColor: "#1C437E",
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-                fontSize: "20px",
-                fontWeight: "bold",
-                color: "aliceblue",
-              }}
-            >
-              +
-            </div>
+          <div className="list_title">
+            <img src={add} alt="plus" style={{ height: 40 }} />
             <h3>Add a task</h3>
           </div>
-          <ul style={{ margin: 0, padding: 0 }}>
-            <li
-              style={{
-                display: "flex",
-                listStyle: "none",
-                width: "250px",
-                gap: "20px",
-                alignContent: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <div
-                style={{
-                  width: "150px",
-                  display: "flex",
-                  alignContent: "center",
-                  alignItems: "center",
-                  gap: "20px",
-                }}
-              >
-                <Circle />
+          <ul className="list" style={{ margin: 0, padding: 0 }}>
+            <li>
+              <div>
+                <img src={circle} alt="circle" style={{ height: 40 }} />
                 <span>Task 1</span>
               </div>
-              <Edit/>
+              <Edit />
             </li>
           </ul>
           <h2 style={{ color: "#288A28", fontWeight: 500 }}>Completed</h2>
-          <ul style={{ margin: 0, padding: 0, color: "#288A28" }}>
-            <li
-              style={{
-                display: "flex",
-                listStyle: "none",
-                width: "200px",
-                gap: "20px",
-                alignContent: "center",
-              }}
-            >
-              <img
-                src={Done}
-                alt="done"
-                style={{ width: "30px", height: "30px" }}
-              />
+          <ul className="list" style={{ margin: 0, padding: 0, color: "#288A28" }}>
+            <li>
+            <div>
+              <img src={Done} alt="done" style={{ height: "32px" }} />
               <span>Task 1</span>
+            </div>
             </li>
           </ul>
         </div>
       </div>
-      <Add />
+      <img src={add} className="add" />
+    </div>
     </div>
   );
 }

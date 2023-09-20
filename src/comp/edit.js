@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Editlogo from "../icons8-edit-24.png";
+import Editlogo from "../assets/edit.png";
 function Edit({ initialValue, onSave }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(initialValue);
@@ -10,7 +10,6 @@ function Edit({ initialValue, onSave }) {
 
   const handleSaveClick = () => {
     setIsEditing(false);
-    onSave(editedValue);
   };
 
   return (

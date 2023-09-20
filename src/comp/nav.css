@@ -1,0 +1,18 @@
+.profile{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.drop{
+    position: absolute;
+    display: none;
+    margin-top: 10px;
+    padding: 20px 0px;
+    background-color: #1C437E;
+    color: white;
+    cursor: pointer;
+    left: 0;
+}
+.profile:hover .drop{
+    display: block;
+}   
