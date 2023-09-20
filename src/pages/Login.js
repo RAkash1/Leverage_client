@@ -1,13 +1,39 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+  const Navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    let user = localStorage.getItem("logeduser");
+    if (user !== null) {
+      Navigate("/");
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("username", username);
-    data.append("password", password);
+    let data = {
+      username: username,
+      password: password,
+    };
+    let alljson = localStorage.getItem("users");
+    if (alljson === null) {
+      alljson = "[]";
+    }
+    let allusers = JSON.parse(alljson);
+    let user = allusers.find((user) => {
+      return user.username === data.username && user.password === data.password;
+    });
+    console.log(user);  
+    if (user === undefined) {
+      alert("user not exist");
+      return;
+    }
+    else{
+      localStorage.setItem("logeduser", JSON.stringify(user));
+      console.log("user exist");
+    }
     console.log(data);
   };
   return (

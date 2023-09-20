@@ -5,7 +5,16 @@ import Add from "../comp/add";
 import Edit from "../comp/edit";
 import Done from "../icons8-check-30.png";
 import Circle from "../comp/circle";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
+  let Navigate = useNavigate();
+  useEffect(() => {
+    let user = localStorage.getItem("logeduser");
+    if (user === null) {
+      Navigate("/login");
+    }
+  }, []);
   return (
     <div>
       <Nav />

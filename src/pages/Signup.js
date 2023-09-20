@@ -1,17 +1,36 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 export default function Signup() {
+  const Navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("username", username);
-    data.append("email", email);
-    data.append("password", password);
-    console.log(data);
+    let data = {
+      username: username,
+      email: email,
+      password: password,
+    };
+    let alljson = localStorage.getItem("users");
+    if (alljson === null) {
+      alljson = "[]";
+    }
+    let allusers = JSON.parse(alljson);
+    let user = allusers.find((user) => {
+      return user.username === data.username || user.email === data.email;
+    });
+    if (user !== undefined) {
+      alert("user already exist");
+      return;
+    }else{
+
+    let setuser = JSON.stringify([...allusers,data]);
+    localStorage.setItem("users", setuser);
+    Navigate("/login");}
+    
   };
   return (
     <div className="log">
@@ -50,7 +69,7 @@ export default function Signup() {
           />
         </div>
         <div className="terms-cond">
-          <input type="checkbox" id="terms" name="terms" value="terms" />
+          <input type="checkbox" id="terms" name="terms" value="terms" required/>
           <label for="terms">I agree to the Terms of Use</label>
         </div>
         <button type="submit">Sign up</button>
